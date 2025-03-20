@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import { NextResponse , NextRequest } from "next/server"
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 function convertJsonStringToObject(jsonString: string ): any {
@@ -39,9 +39,9 @@ interface UserData {
 }
 
 export async function GET(
-  req: Request,
-  context: { params: { username: string } }) {
-  const { username } = context.params;
+  req: NextRequest,
+  { params }: { params: { username: string } }) {
+  const { username } = params;
 
   if (!username) {
     return NextResponse.json({ error: "Username is required" }, { status: 400 });
