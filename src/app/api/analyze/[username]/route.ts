@@ -40,8 +40,8 @@ interface UserData {
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { username: string } }) {
-  const { username } = params;
+  context: { params: { username: string } }) {
+    const { username } = context.params;
 
   if (!username) {
     return NextResponse.json({ error: "Username is required" }, { status: 400 });
