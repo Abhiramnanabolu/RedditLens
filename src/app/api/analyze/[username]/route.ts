@@ -38,8 +38,10 @@ interface UserData {
   comments?: Comment[];
 }
 
-export async function GET(req: Request, { params }: { params: { username: string } }) {
-  const { username } = params;
+export async function GET(
+  req: Request,
+  context: { params: { username: string } }) {
+  const { username } = context.params;
 
   if (!username) {
     return NextResponse.json({ error: "Username is required" }, { status: 400 });
