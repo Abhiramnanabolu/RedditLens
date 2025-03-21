@@ -23,9 +23,12 @@ interface UserData {
   comments?: Comment[];
 }
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = req.nextUrl;
-  const  username  = searchParams.get("username");
+export async function GET(req: NextRequest , {
+      params,
+    }: {
+      params: Promise<{ username: string }>
+    }) {
+    const { username } = await params;
 
   if (!username) {
     return NextResponse.json({ error: "Username is required" }, { status: 400 });
