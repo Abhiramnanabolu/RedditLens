@@ -92,8 +92,7 @@ export async function GET(req: NextRequest , {
         "Porsche", "Ender", "Xbox"
     ],
     "life_stage": "X",
-    "personality": "Positive"} do not add explainations in brackets , just the words return a single json like "{
-    "key1": "value1", "key2": "value2"}" so that i can just parse what you give and i get a json object i can send in a response:
+    "personality": "Positive"} do not add explainations in brackets , just the words:
     ${JSON.stringify(userData)}
   `;
 
