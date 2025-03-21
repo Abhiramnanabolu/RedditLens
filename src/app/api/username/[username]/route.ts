@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const keysList = JSON.parse(process.env.GEMINI_API_KEY_LIST || "[]");
@@ -23,8 +23,9 @@ interface UserData {
   comments?: Comment[];
 }
 
-export async function GET(req: Request, { params }: { params: { username: string } }) {
-  const { username } = params;
+export async function GET(req: NextRequest) {
+  const { searchParams } = req.nextUrl;
+  const  username  = searchParams.get("username");
 
   if (!username) {
     return NextResponse.json({ error: "Username is required" }, { status: 400 });
